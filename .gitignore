@@ -361,3 +361,27 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+### VS Code ###
+.vscode/
+
+#PlantUML画像出力用フォルダ
+out/
+
+#Asciidoc出力のPDFファイル
+Asciidocs/**/*.pdf
+
+# Excelの作業ファイル
+~$*
+
+# XVBA vscodeで起動したときの対応
+logs/
+*.log
+
+.env
+
+README.pdf
