@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNCMonitorDailyReport", "CNCMonitorDailyReport\CNCMonitorDailyReport.csproj", "{0D8811B0-86AB-4993-A2C4-84A4656391C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNCMonitorDailyReport", "CNCMonitorDailyReport\CNCMonitorDailyReport.csproj", "{0D8811B0-86AB-4993-A2C4-84A4656391C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domain", "domain", "{0352139B-36E0-4E24-8D76-2F2D8FBA8900}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.CNCMonitor", "Wada.CNCMonitor\Wada.CNCMonitor.csproj", "{81E177FC-081B-4EF1-89BD-470412FAF327}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{17DCF6BC-8210-4DCC-ABAF-BFCA879590A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.CNCMonitoredCSV", "Wada.CNCMonitoredCSV\Wada.CNCMonitoredCSV.csproj", "{6B87AD36-67AE-45F8-B103-B49897051592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.CNCMonitoredCSVTests", "Wada.CNCMonitoredCSVTests\Wada.CNCMonitoredCSVTests.csproj", "{9E5783D0-C915-4D13-824B-9DD9CF5DA848}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,26 @@ Global
 		{0D8811B0-86AB-4993-A2C4-84A4656391C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D8811B0-86AB-4993-A2C4-84A4656391C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D8811B0-86AB-4993-A2C4-84A4656391C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81E177FC-081B-4EF1-89BD-470412FAF327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E177FC-081B-4EF1-89BD-470412FAF327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E177FC-081B-4EF1-89BD-470412FAF327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E177FC-081B-4EF1-89BD-470412FAF327}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B87AD36-67AE-45F8-B103-B49897051592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B87AD36-67AE-45F8-B103-B49897051592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B87AD36-67AE-45F8-B103-B49897051592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B87AD36-67AE-45F8-B103-B49897051592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E5783D0-C915-4D13-824B-9DD9CF5DA848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E5783D0-C915-4D13-824B-9DD9CF5DA848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E5783D0-C915-4D13-824B-9DD9CF5DA848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E5783D0-C915-4D13-824B-9DD9CF5DA848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81E177FC-081B-4EF1-89BD-470412FAF327} = {0352139B-36E0-4E24-8D76-2F2D8FBA8900}
+		{6B87AD36-67AE-45F8-B103-B49897051592} = {17DCF6BC-8210-4DCC-ABAF-BFCA879590A4}
+		{9E5783D0-C915-4D13-824B-9DD9CF5DA848} = {17DCF6BC-8210-4DCC-ABAF-BFCA879590A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5BD5128-4113-40C9-8F59-3F69868FC14E}
