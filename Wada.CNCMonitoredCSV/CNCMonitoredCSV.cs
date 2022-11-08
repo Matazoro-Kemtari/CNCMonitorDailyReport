@@ -13,7 +13,7 @@ namespace Wada.CNCMonitoredCSV
             string machineName = string.Empty;
             IPAddress ipAddress = pickingCNCMonitor.IPAddress;
             bool readedHeader = false;
-            List<CNCMonitorRecord> records = new List<CNCMonitorRecord>();
+            List<CNCMonitorRecord> records = new();
 
             // 末尾まで繰り返す
             while (!reader.EndOfStream)
@@ -41,6 +41,9 @@ namespace Wada.CNCMonitoredCSV
                 CNCMonitorRecord record = ReadMonitorRecord(line);
                 records.Add(record);
             }
+
+            if (records.Count == 0)
+                throw new CNCMonitorLoaderException("CNC稼働設備ログが記録されていません");
 
             return new CNCMonitorByMachine(
                 loggedDate, pickingCNCMonitor.Factory, ipAddress, machineName, records);

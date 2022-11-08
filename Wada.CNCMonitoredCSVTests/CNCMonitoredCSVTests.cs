@@ -1,13 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Wada.CNCMonitoredCSV;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using Wada.CNCMonitor;
 using System.Net;
+using System.Text;
+using Wada.CNCMonitor;
 
 namespace Wada.CNCMonitoredCSV.Tests
 {
