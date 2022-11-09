@@ -7,11 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MethodBoundaryAspect.Fody" Version="2.0.146">
+      <PrivateAssets></PrivateAssets>
+    </PackageReference>
     <PackageReference Include="NLog" Version="5.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Wada.CNCMonitor\Wada.CNCMonitor.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using NLog;
 using System.Net;
 using System.Text;
 using Wada.CNCMonitor;
@@ -12,6 +14,14 @@ namespace Wada.CNCMonitoredCSV.Tests
         public async Task 正常系_CNC稼働ログが読み込めること()
         {
             // given
+            Mock<ILogger> mock_logger = new();
+            mock_logger.Setup(x
+                => x.Info(
+                    It.IsAny<string>(),
+                    It.IsAny<DateTime>(),
+                    It.IsAny<string>(),
+                    It.IsAny<int>()));
+
             string file = MakeTestLog(normalLogs);
 
             // when
@@ -22,7 +32,7 @@ namespace Wada.CNCMonitoredCSV.Tests
                 "RC-1号機",
                 file);
             using StreamReader reader = new(file, Encoding.GetEncoding("shift_jis"));
-            ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV();
+            ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV(mock_logger.Object);
             CNCMonitorByMachine actual = await monitorLoader.LoadMachineLogsAsync(reader, pickingCNCMonitor);
 
             // then
@@ -31,12 +41,21 @@ namespace Wada.CNCMonitoredCSV.Tests
             Assert.AreEqual("RC-1号機", actual.MachineName);
             Assert.AreEqual(IPAddress.Parse("192.168.1.1"), actual.IPAddress);
             Assert.AreEqual(32, actual.CNCMonitorRecords.Count());
+            mock_logger.Verify(x
+                => x.Info(
+                    "CNC稼働設備ログ {0}, {1}, {2} 件",
+                    DateTime.Parse("2022年10月25日"),
+                    "RC-1号機",
+                    32),
+                    Times.Once());
         }
 
         [TestMethod]
         public async Task 異常系_ファイルが空の場合例外を返すこと()
         {
             // given
+            Mock<ILogger> mock_logger = new();
+            mock_logger.Setup(x => x.Info(It.IsAny<string>()));
             string file = MakeTestLog("");
 
             // when
@@ -47,7 +66,7 @@ namespace Wada.CNCMonitoredCSV.Tests
                 "RC-1号機",
                 file);
             using StreamReader reader = new(file, Encoding.GetEncoding("shift_jis"));
-            ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV();
+            ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV(mock_logger.Object);
 
 
             async Task target()
@@ -56,11 +75,13 @@ namespace Wada.CNCMonitoredCSV.Tests
             }
 
             // then
+            var msg = "CNC稼働設備ログが記録されていません";
             var ex = await Assert.ThrowsExceptionAsync<CNCMonitorLoaderException>(target);
-            Assert.AreEqual("CNC稼働設備ログが記録されていません", ex.Message);
+            Assert.AreEqual(msg, ex.Message);
+            mock_logger.Verify(x => x.Error(msg), Times.Once());
         }
 
-        static string MakeTestLog(string text)
+        public static string MakeTestLog(string text)
         {
             string file = @"TestMonitor.csv";
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -70,8 +91,8 @@ namespace Wada.CNCMonitoredCSV.Tests
             return file;
         }
 
-        static readonly string normalLogs =
-@"日時,2022年10月25日
+        public static readonly string normalLogs =
+  @"日時,2022年10月25日
 機械名,RC-1号機,192.168.1.1
 Date,State,ProgName,mdata,data,F,S,auto,run,motion,mstb,emergency,alarm,edit,M,T,SLM,NCComment
 2022/10/25 00:00,未接続（電源OFF)

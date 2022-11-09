@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.CNCMonitor", "Wada.CNC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{17DCF6BC-8210-4DCC-ABAF-BFCA879590A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.CNCMonitoredCSV", "Wada.CNCMonitoredCSV\Wada.CNCMonitoredCSV.csproj", "{6B87AD36-67AE-45F8-B103-B49897051592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.CNCMonitoredCSV", "Wada.CNCMonitoredCSV\Wada.CNCMonitoredCSV.csproj", "{6B87AD36-67AE-45F8-B103-B49897051592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.CNCMonitoredCSVTests", "Wada.CNCMonitoredCSVTests\Wada.CNCMonitoredCSVTests.csproj", "{9E5783D0-C915-4D13-824B-9DD9CF5DA848}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.CNCMonitoredCSVTests", "Wada.CNCMonitoredCSVTests\Wada.CNCMonitoredCSVTests.csproj", "{9E5783D0-C915-4D13-824B-9DD9CF5DA848}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
