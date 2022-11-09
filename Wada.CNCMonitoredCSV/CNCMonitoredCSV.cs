@@ -1,10 +1,18 @@
-﻿using System.Net;
+﻿using NLog;
+using System.Net;
 using Wada.CNCMonitor;
 
 namespace Wada.CNCMonitoredCSV
 {
     public class CNCMonitoredCSV : ICNCMonitorLoader
     {
+        private readonly ILogger logger;
+
+        public CNCMonitoredCSV(ILogger logger)
+        {
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         public async Task<CNCMonitorByMachine> LoadMachineLogsAsync(StreamReader reader, PickingCNCMonitor pickingCNCMonitor)
         {
             bool readedLogedDate = false;
@@ -19,6 +27,7 @@ namespace Wada.CNCMonitoredCSV
             while (!reader.EndOfStream)
             {
                 string? line = await reader.ReadLineAsync();
+
                 // 1行目 日時を読み込む
                 if (!readedLogedDate)
                 {
@@ -42,22 +51,36 @@ namespace Wada.CNCMonitoredCSV
                 records.Add(record);
             }
 
+
             if (records.Count == 0)
-                throw new CNCMonitorLoaderException("CNC稼働設備ログが記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
+            logger.Info("CNC稼働設備ログ {0}, {1}, {2} 件", loggedDate, machineName, records.Count);
 
             return new CNCMonitorByMachine(
                 loggedDate, pickingCNCMonitor.Factory, ipAddress, machineName, records);
         }
 
-        private static CNCMonitorRecord ReadMonitorRecord(string? line)
+        private CNCMonitorRecord ReadMonitorRecord(string? line)
         {
             if (line == null)
-                throw new CNCMonitorLoaderException("CNC稼働設備ログが記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
 
             string[] values = line.Split(",");
 
             if (values.Length < 2)
-                throw new CNCMonitorLoaderException("CNC稼働設備ログが記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
 
             DateTime recordTime = DateTime.Parse(values[0]);
             string state = values[1];
@@ -84,15 +107,23 @@ namespace Wada.CNCMonitoredCSV
             return record;
         }
 
-        private static (string, IPAddress, bool) ReadMachineName(string? line)
+        private (string, IPAddress, bool) ReadMachineName(string? line)
         {
             if (line == null)
-                throw new CNCMonitorLoaderException("CNC稼働設備名が記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
 
             var values = line.Split(",");
 
             if (values.Length < 3)
-                throw new CNCMonitorLoaderException("CNC稼働設備名が記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
 
             var machineName = values[1];
             IPAddress ipAddress;
@@ -102,21 +133,31 @@ namespace Wada.CNCMonitoredCSV
             }
             catch (FormatException)
             {
-                throw new CNCMonitorLoaderException("CNC稼働IPアドレスが記録されていません");
+                var msg = "CNC稼働IPアドレスが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
             }
 
             return (machineName, ipAddress, true);
         }
 
-        private static (DateTime, bool) ReadLoggedDate(string? line)
+        private (DateTime, bool) ReadLoggedDate(string? line)
         {
             if (line == null)
-                throw new CNCMonitorLoaderException("CNC稼働ログ日時が記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
 
             var values = line.Split(",");
 
             if (values.Length < 2)
-                throw new CNCMonitorLoaderException("CNC稼働ログ日時が記録されていません");
+            {
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
+            }
 
             DateTime loggedDate;
             try
@@ -125,7 +166,9 @@ namespace Wada.CNCMonitoredCSV
             }
             catch (FormatException)
             {
-                throw new CNCMonitorLoaderException("CNC稼働ログ日時が記録されていません");
+                var msg = "CNC稼働設備ログが記録されていません";
+                logger.Error(msg);
+                throw new CNCMonitorLoaderException(msg);
             }
 
             return (loggedDate, true);
