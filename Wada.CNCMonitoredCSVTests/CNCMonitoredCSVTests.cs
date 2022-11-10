@@ -15,12 +15,6 @@ namespace Wada.CNCMonitoredCSV.Tests
         {
             // given
             Mock<ILogger> mock_logger = new();
-            mock_logger.Setup(x
-                => x.Info(
-                    It.IsAny<string>(),
-                    It.IsAny<DateTime>(),
-                    It.IsAny<string>(),
-                    It.IsAny<int>()));
 
             string file = MakeTestLog(normalLogs);
 
@@ -41,13 +35,6 @@ namespace Wada.CNCMonitoredCSV.Tests
             Assert.AreEqual("RC-1号機", actual.MachineName);
             Assert.AreEqual(IPAddress.Parse("192.168.1.1"), actual.IPAddress);
             Assert.AreEqual(32, actual.CNCMonitorRecords.Count());
-            mock_logger.Verify(x
-                => x.Info(
-                    "CNC稼働設備ログ {0}, {1}, {2} 件",
-                    DateTime.Parse("2022年10月25日"),
-                    "RC-1号機",
-                    32),
-                    Times.Once());
         }
 
         [TestMethod]
@@ -55,7 +42,6 @@ namespace Wada.CNCMonitoredCSV.Tests
         {
             // given
             Mock<ILogger> mock_logger = new();
-            mock_logger.Setup(x => x.Info(It.IsAny<string>()));
             string file = MakeTestLog("");
 
             // when
@@ -78,7 +64,6 @@ namespace Wada.CNCMonitoredCSV.Tests
             var msg = "CNC稼働設備ログが記録されていません";
             var ex = await Assert.ThrowsExceptionAsync<CNCMonitorLoaderException>(target);
             Assert.AreEqual(msg, ex.Message);
-            mock_logger.Verify(x => x.Error(msg), Times.Once());
         }
 
         public static string MakeTestLog(string text)
