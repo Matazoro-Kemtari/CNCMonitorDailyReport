@@ -385,3 +385,5 @@ logs/
 .env
 
 README.pdf
+
+appsettings.json

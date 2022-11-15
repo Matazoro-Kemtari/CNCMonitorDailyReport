@@ -19,9 +19,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wada.CNCMonitoredCSVTests\Wada.CNCMonitoredCSVTests.csproj" />
+    <ProjectReference Include="..\Wada.LoadCNCMonitorApplication\Wada.LoadCNCMonitorApplication.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appsettings.sample.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

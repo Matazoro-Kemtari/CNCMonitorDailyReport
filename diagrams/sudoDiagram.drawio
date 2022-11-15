@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="RzdB1_ECVK01WcsdOi-J" name="sodo">
-        <mxGraphModel dx="1145" dy="658" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1374" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -137,18 +137,8 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="514" style="edgeStyle=none;html=1;endArrow=none;endFill=0;startArrow=diamond;startFill=1;" edge="1" parent="1" source="468" target="513">
+                <mxCell id="514" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;startArrow=none;startFill=0;" parent="1" source="468" target="513" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="515" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="514">
-                    <mxGeometry x="0.7024" relative="1" as="geometry">
-                        <mxPoint y="4" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="516" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="514">
-                    <mxGeometry x="-0.307" relative="1" as="geometry">
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
                 </mxCell>
                 <mxCell id="468" value="&lt;u&gt;CNC稼働ログ&lt;/u&gt;&lt;br&gt;(CNCMonitorByMachine&lt;span&gt;)&lt;/span&gt;&lt;br&gt;CNC稼働ログ情報&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
                     <mxGeometry x="28.76" y="1060" width="141.25" height="50" as="geometry"/>
