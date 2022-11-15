@@ -1,5 +1,6 @@
 ﻿using NLog;
 using System.Net;
+using System.Reflection;
 using Wada.CNCMonitor;
 
 namespace Wada.CNCMonitoredCSV
@@ -15,6 +16,8 @@ namespace Wada.CNCMonitoredCSV
 
         public async Task<CNCMonitorByMachine> LoadMachineLogsAsync(StreamReader reader, PickingCNCMonitor pickingCNCMonitor)
         {
+            logger.Debug("Start {0}", MethodBase.GetCurrentMethod()?.Name);
+
             bool readedLogedDate = false;
             DateTime loggedDate = DateTime.MinValue;
             bool readedMachineName = false;
@@ -60,6 +63,7 @@ namespace Wada.CNCMonitoredCSV
             }
             logger.Info("CNC稼働設備ログ {0}, {1}, {2} 件", loggedDate, machineName, records.Count);
 
+            logger.Debug("Finish {0}", MethodBase.GetCurrentMethod()?.Name);
             return new CNCMonitorByMachine(
                 loggedDate, pickingCNCMonitor.Factory, ipAddress, machineName, records);
         }

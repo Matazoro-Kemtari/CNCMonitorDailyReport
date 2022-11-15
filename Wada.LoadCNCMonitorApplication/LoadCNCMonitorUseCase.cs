@@ -60,17 +60,28 @@ namespace Wada.LoadCNCMonitorApplication
                 logger.Error(m);
                 throw new LoadCNCMonitorException(m);
             }
-
             // モニタログ読み込みループ
-            var cncMonitorByMachines = await Task.WhenAll(
+            IEnumerable<Task<CNCMonitorByMachine>> loadTasks =
                 pickingMonitors.Select(async x =>
                 {
                     // ファイルを開く
-                    using var stream = streamOpner.Open(x.GetFilePath(baseDirectory));
+                    using StreamReader stream = streamOpner.Open(x.GetFilePath(baseDirectory));
 
                     // データ展開
                     return await cncMonitorLoader.LoadMachineLogsAsync(stream, x);
-                }));
+                });
+
+            CNCMonitorByMachine[] cncMonitorByMachines;
+            try
+            {
+                cncMonitorByMachines = await Task.WhenAll(loadTasks);
+            }
+            catch (Exception e) when (e is FileNotFoundException || e is DirectoryNotFoundException)
+            {
+                var m = "CNC稼働ログ読み込みに失敗しました";
+                logger.Error(e, m);
+                throw new LoadCNCMonitorException(m, e);
+            }
 
             logger.Debug("Finish {0}", MethodBase.GetCurrentMethod()?.Name);
             return cncMonitorByMachines;

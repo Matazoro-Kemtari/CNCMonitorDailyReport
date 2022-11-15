@@ -23,8 +23,7 @@ namespace Wada.CNCMonitoredCSV.Tests
                 new DateTime(2022, 10, 25),
                 "Test工場",
                 IPAddress.Parse("192.168.1.1"),
-                "RC-1号機",
-                file);
+                "RC-1号機");
             using StreamReader reader = new(file, Encoding.GetEncoding("shift_jis"));
             ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV(mock_logger.Object);
             CNCMonitorByMachine actual = await monitorLoader.LoadMachineLogsAsync(reader, pickingCNCMonitor);
@@ -49,8 +48,7 @@ namespace Wada.CNCMonitoredCSV.Tests
                 new DateTime(2022, 10, 25),
                 "Test工場",
                 IPAddress.Parse("192.168.1.1"),
-                "RC-1号機",
-                file);
+                "RC-1号機");
             using StreamReader reader = new(file, Encoding.GetEncoding("shift_jis"));
             ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV(mock_logger.Object);
 

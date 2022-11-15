@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wada.CNCMonitoredCSVTests\Wada.CNCMonitoredCSVTests.csproj" />
+    <ProjectReference Include="..\Wada.LoadCNCMonitorApplication\Wada.LoadCNCMonitorApplication.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@
 namespace Wada.LoadCNCMonitorApplication
 {
     [Serializable]
-    internal class LoadCNCMonitorException : Exception
+    public class LoadCNCMonitorException : Exception
     {
         public LoadCNCMonitorException()
         {

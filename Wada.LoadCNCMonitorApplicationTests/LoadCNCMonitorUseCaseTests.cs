@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NLog;
+using NLog.Targets;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Wada.CNCMonitor;
@@ -63,5 +65,43 @@ Date,State,ProgName,mdata,data,F,S,auto,run,motion,mstb,emergency,alarm,edit,M,T
 2022/10/25 00:00,未接続（電源OFF)
 2022/10/25 08:26,接続（電源ON),O12,12,12,0,0,5,0,0,0,1,0,0,00,00,0,
 ";
+
+        [TestMethod]
+        public async Task 異常系_ログが無いとき例外を返すこと()
+        {
+            // given
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile(path: "appsettings.json", optional: true)
+                .Build();
+            Mock<ILogger> mock_logger = new();
+
+            // when
+            DateTime processDate = new DateTime(2022, 5, 5);
+
+            // Mock ストリーム
+            // stringをstreamに変換
+            Mock<IStreamOpener> mock_stream = new();
+            mock_stream.Setup(x => x.Open(It.IsAny<string>()))
+                .Throws(new FileNotFoundException());
+
+            // Mock CNC稼働ログローダー
+            Mock<ICNCMonitorLoader> mock_loader = new();
+
+            ILoadCNCMonitorUseCase loadCNCMonitorUseCase =
+                new LoadCNCMonitorUseCase(configuration,
+                                          mock_logger.Object,
+                                          mock_stream.Object,
+                                          mock_loader.Object);
+            async Task<IEnumerable<CNCMonitorByMachine>> target()
+            {
+                return await loadCNCMonitorUseCase.ExecuteAsync(processDate);
+            }
+
+            // then
+            var msg = "CNC稼働ログ読み込みに失敗しました";
+            var ex = await Assert.ThrowsExceptionAsync<LoadCNCMonitorException>(target);
+            Assert.AreEqual(msg, ex.Message);
+        }
     }
 }
