@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NLog;
+using Wada.CNCMonitor;
+using Wada.CNCMonitoredCSV;
 
 // 環境変数を読み込む
 DotNetEnv.Env.Load(".env");
@@ -9,8 +11,7 @@ DotNetEnv.Env.Load(".env");
 IServiceCollection services = new ServiceCollection();
 _ = services.AddSingleton<IConfiguration>(_ => MyConfigurationBuilder());
 _ = services.AddSingleton<ILogger, Logger>(_ => LogManager.GetCurrentClassLogger());
-
-
+_ = services.AddTransient<ICNCMonitorLoader, CNCMonitoredCSV>();
 
 
 
