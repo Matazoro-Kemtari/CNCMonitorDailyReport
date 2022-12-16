@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Wada.CNCMonitor
+namespace Wada.CNCMonitor.CNCMonitorAggregation
 {
     /// <summary>
     /// CNC稼働ログ

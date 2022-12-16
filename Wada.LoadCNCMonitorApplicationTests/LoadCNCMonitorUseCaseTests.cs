@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using NLog;
-using NLog.Targets;
-using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Wada.CNCMonitor;
+using Wada.CNCMonitor.CNCMonitorAggregation;
 
 namespace Wada.LoadCNCMonitorApplication.Tests
 {
@@ -21,10 +19,9 @@ namespace Wada.LoadCNCMonitorApplication.Tests
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile(path: "appsettings.json", optional: true)
                 .Build();
-            Mock<ILogger> mock_logger = new();
 
             // when
-            DateTime processDate = new DateTime(2022, 5, 5);
+            DateTime processDate = new(2022, 5, 5);
             var expected = new CNCMonitorByMachine(
                 processDate,
                 "A工場",
@@ -34,21 +31,21 @@ namespace Wada.LoadCNCMonitorApplication.Tests
                 {
                     new CNCMonitorRecord(processDate, "接続（電源ON)", "O12", 5, 10, 1, 2, 0),
                 });
+
             // Mock ストリーム
             // stringをstreamに変換
-            StreamReader stream = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(normalLogs)));
+            StreamReader stream = new(new MemoryStream(Encoding.UTF8.GetBytes(normalLogs)));
             Mock<IStreamOpener> mock_stream = new();
             mock_stream.Setup(x => x.Open(It.IsAny<string>()))
                 .Returns(stream);
 
             // Mock CNC稼働ログローダー
             Mock<ICNCMonitorLoader> mock_loader = new();
-            mock_loader.Setup(x => x.LoadMachineLogsAsync(stream, It.IsAny<PickingCNCMonitor>()))
+            mock_loader.Setup(x => x.LoadMachineLogsAsync(It.IsAny<LoadMachineLogsRecord>()))
                 .ReturnsAsync(expected);
 
             ILoadCNCMonitorUseCase loadCNCMonitorUseCase =
                 new LoadCNCMonitorUseCase(configuration,
-                                          mock_logger.Object,
                                           mock_stream.Object,
                                           mock_loader.Object);
             var actual = await loadCNCMonitorUseCase.ExecuteAsync(processDate);
@@ -74,10 +71,9 @@ Date,State,ProgName,mdata,data,F,S,auto,run,motion,mstb,emergency,alarm,edit,M,T
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile(path: "appsettings.json", optional: true)
                 .Build();
-            Mock<ILogger> mock_logger = new();
 
             // when
-            DateTime processDate = new DateTime(2022, 5, 5);
+            DateTime processDate = new(2022, 5, 5);
 
             // Mock ストリーム
             // stringをstreamに変換
@@ -90,7 +86,6 @@ Date,State,ProgName,mdata,data,F,S,auto,run,motion,mstb,emergency,alarm,edit,M,T
 
             ILoadCNCMonitorUseCase loadCNCMonitorUseCase =
                 new LoadCNCMonitorUseCase(configuration,
-                                          mock_logger.Object,
                                           mock_stream.Object,
                                           mock_loader.Object);
             async Task<IEnumerable<CNCMonitorByMachine>> target()
