@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using NLog;
 using System.Net;
-using System.Reflection;
+using Wada.AOP.Logging;
 using Wada.CNCMonitor;
+using Wada.CNCMonitor.CNCMonitorAggregation;
 
+[module: Logging]
 namespace Wada.LoadCNCMonitorApplication
 {
     public interface ILoadCNCMonitorUseCase
@@ -18,31 +19,26 @@ namespace Wada.LoadCNCMonitorApplication
     public class LoadCNCMonitorUseCase : ILoadCNCMonitorUseCase
     {
         private readonly IConfiguration configuration;
-        private readonly ILogger logger;
         private readonly ICNCMonitorLoader cncMonitorLoader;
         private readonly IStreamOpener streamOpner;
 
         public LoadCNCMonitorUseCase(IConfiguration configuration,
-                                     ILogger logger,
                                      IStreamOpener streamOpner,
                                      ICNCMonitorLoader cncMonitorLoader)
         {
             this.configuration = configuration;
-            this.logger = logger;
             this.streamOpner = streamOpner;
             this.cncMonitorLoader = cncMonitorLoader;
         }
 
+        [Logging]
         public async Task<IEnumerable<CNCMonitorByMachine>> ExecuteAsync(DateTime processDate)
         {
-            logger.Debug("Start {0}", MethodBase.GetCurrentMethod()?.Name);
-
             // モニタログ取得設定を準備する
             IEnumerable<CNCMonitorLog>? cncMonitorLogs = configuration.GetSection("cncMonitorLogs").Get<CNCMonitorLog[]>();
             if (cncMonitorLogs == null)
             {
                 var m = "設定ファイルが読み込めません <cncMonitorLogs>";
-                logger.Error(m);
                 throw new LoadCNCMonitorException(m);
             }
             var pickingMonitors = cncMonitorLogs
@@ -57,7 +53,6 @@ namespace Wada.LoadCNCMonitorApplication
             if (baseDirectory == null)
             {
                 var m = "設定ファイルが読み込めません <monitorLogDirectory>";
-                logger.Error(m);
                 throw new LoadCNCMonitorException(m);
             }
             // モニタログ読み込みループ
@@ -68,7 +63,8 @@ namespace Wada.LoadCNCMonitorApplication
                     using StreamReader stream = streamOpner.Open(x.GetFilePath(baseDirectory));
 
                     // データ展開
-                    return await cncMonitorLoader.LoadMachineLogsAsync(stream, x);
+                    return await cncMonitorLoader.LoadMachineLogsAsync(
+                        new LoadMachineLogsRecord(stream, x.Factory, x.IPAddress)); ;
                 });
 
             CNCMonitorByMachine[] cncMonitorByMachines;
@@ -79,11 +75,9 @@ namespace Wada.LoadCNCMonitorApplication
             catch (Exception e) when (e is FileNotFoundException || e is DirectoryNotFoundException)
             {
                 var m = "CNC稼働ログ読み込みに失敗しました";
-                logger.Error(e, m);
                 throw new LoadCNCMonitorException(m, e);
             }
 
-            logger.Debug("Finish {0}", MethodBase.GetCurrentMethod()?.Name);
             return cncMonitorByMachines;
         }
     }

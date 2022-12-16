@@ -4,6 +4,7 @@ using NLog;
 using System.Net;
 using System.Text;
 using Wada.CNCMonitor;
+using Wada.CNCMonitor.CNCMonitorAggregation;
 
 namespace Wada.CNCMonitoredCSV.Tests
 {
@@ -19,14 +20,10 @@ namespace Wada.CNCMonitoredCSV.Tests
             string file = MakeTestLog(normalLogs);
 
             // when
-            PickingCNCMonitor pickingCNCMonitor = new(
-                new DateTime(2022, 10, 25),
-                "Test工場",
-                IPAddress.Parse("192.168.1.1"),
-                "RC-1号機");
             using StreamReader reader = new(file, Encoding.GetEncoding("shift_jis"));
+            LoadMachineLogsRecord loadMachineLogsRecord = new(reader, "Test工場", IPAddress.Parse("192.168.1.1"));
             ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV(mock_logger.Object);
-            CNCMonitorByMachine actual = await monitorLoader.LoadMachineLogsAsync(reader, pickingCNCMonitor);
+            CNCMonitorByMachine actual = await monitorLoader.LoadMachineLogsAsync(loadMachineLogsRecord);
 
             // then
             Assert.IsNotNull(actual);
@@ -44,18 +41,14 @@ namespace Wada.CNCMonitoredCSV.Tests
             string file = MakeTestLog("");
 
             // when
-            PickingCNCMonitor pickingCNCMonitor = new(
-                new DateTime(2022, 10, 25),
-                "Test工場",
-                IPAddress.Parse("192.168.1.1"),
-                "RC-1号機");
             using StreamReader reader = new(file, Encoding.GetEncoding("shift_jis"));
+            LoadMachineLogsRecord loadMachineLogsRecord = new(reader, "Test工場", IPAddress.Parse("192.168.1.1"));
             ICNCMonitorLoader monitorLoader = new CNCMonitoredCSV(mock_logger.Object);
 
 
             async Task target()
             {
-                _ = await monitorLoader.LoadMachineLogsAsync(reader, pickingCNCMonitor);
+                _ = await monitorLoader.LoadMachineLogsAsync(loadMachineLogsRecord);
             }
 
             // then
