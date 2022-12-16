@@ -19,7 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Usecase", "Usecase", "{D546
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.LoadCNCMonitorApplication", "Wada.LoadCNCMonitorApplication\Wada.LoadCNCMonitorApplication.csproj", "{D779DBD1-1F76-411B-B0DE-AB6FEFD0D8BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.LoadCNCMonitorApplicationTests", "Wada.LoadCNCMonitorApplicationTests\Wada.LoadCNCMonitorApplicationTests.csproj", "{A71E52E1-7042-4129-B35D-0F4EAB875C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.LoadCNCMonitorApplicationTests", "Wada.LoadCNCMonitorApplicationTests\Wada.LoadCNCMonitorApplicationTests.csproj", "{A71E52E1-7042-4129-B35D-0F4EAB875C52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AOP", "AOP", "{B33445B1-23B4-4485-985B-4AB74FC47399}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.AOP.Logging", "..\VerifyAttendanceCSV\Wada.AOP.Logging\Wada.AOP.Logging.csproj", "{2E4E6E22-D76E-4F00-84F2-E3309FA742D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,10 @@ Global
 		{A71E52E1-7042-4129-B35D-0F4EAB875C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A71E52E1-7042-4129-B35D-0F4EAB875C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A71E52E1-7042-4129-B35D-0F4EAB875C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E4E6E22-D76E-4F00-84F2-E3309FA742D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4E6E22-D76E-4F00-84F2-E3309FA742D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4E6E22-D76E-4F00-84F2-E3309FA742D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4E6E22-D76E-4F00-84F2-E3309FA742D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,7 @@ Global
 		{9E5783D0-C915-4D13-824B-9DD9CF5DA848} = {17DCF6BC-8210-4DCC-ABAF-BFCA879590A4}
 		{D779DBD1-1F76-411B-B0DE-AB6FEFD0D8BD} = {D5469488-7E48-454A-BD90-EEFE2461D87A}
 		{A71E52E1-7042-4129-B35D-0F4EAB875C52} = {D5469488-7E48-454A-BD90-EEFE2461D87A}
+		{2E4E6E22-D76E-4F00-84F2-E3309FA742D9} = {B33445B1-23B4-4485-985B-4AB74FC47399}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5BD5128-4113-40C9-8F59-3F69868FC14E}
