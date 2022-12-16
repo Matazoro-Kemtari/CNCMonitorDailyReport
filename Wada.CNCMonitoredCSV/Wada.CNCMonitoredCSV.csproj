@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\VerifyAttendanceCSV\Wada.AOP.Logging\Wada.AOP.Logging.csproj" />
+    <ProjectReference Include="..\Wada.AOP.Logging\Wada.AOP.Logging.csproj" />
     <ProjectReference Include="..\Wada.CNCMonitor\Wada.CNCMonitor.csproj" />
   </ItemGroup>
 

@@ -68,7 +68,7 @@ namespace Wada.CNCMonitoredCSV
         }
 
         [Logging]
-        private CNCMonitorRecord ReadMonitorRecord(string? line)
+        private static CNCMonitorRecord ReadMonitorRecord(string? line)
         {
             if (line == null)
             {
@@ -110,7 +110,7 @@ namespace Wada.CNCMonitoredCSV
         }
 
         [Logging]
-        private (string, IPAddress, bool) ReadMachineName(string? line)
+        private static (string, IPAddress, bool) ReadMachineName(string? line)
         {
             if (line == null)
             {
@@ -142,7 +142,7 @@ namespace Wada.CNCMonitoredCSV
         }
 
         [Logging]
-        private (DateTime, bool) ReadLoggedDate(string? line)
+        private static (DateTime, bool) ReadLoggedDate(string? line)
         {
             if (line == null)
             {
