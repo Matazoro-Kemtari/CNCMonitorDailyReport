@@ -22,15 +22,7 @@ namespace Wada.LoadCNCMonitorApplication.Tests
 
             // when
             DateTime processDate = new(2022, 5, 5);
-            var expected = new CNCMonitorByMachine(
-                processDate,
-                "A工場",
-                IPAddress.Parse("192.168.1.1"),
-                "設備1号",
-                new CNCMonitorRecord[]
-                {
-                    new CNCMonitorRecord(processDate, "接続（電源ON)", "O12", 5, 10, 1, 2, 0),
-                });
+            CNCMonitorByMachine expected = TestCNCMonitorByMachineFactory.Create();
 
             // Mock ストリーム
             // stringをstreamに変換
