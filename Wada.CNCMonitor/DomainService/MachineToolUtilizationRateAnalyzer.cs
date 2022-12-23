@@ -36,9 +36,6 @@ namespace Wada.CNCMonitor.DomainService
             if (cncMonitorByMachines.GroupBy(x => x.PickedDate).Count() > 1)
                 throw new CNCMonitorLoaderException("稼働ログの分析に複数の取得日は指定できません");
 
-            // 測定抜けを穴埋めする
-
-
             // レポート設定を取得
             IEnumerable<CNCMonitorLog>? cncMonitorLogs = _configuration.GetSection("cncMonitorLogs").Get<CNCMonitorLog[]>();
             if (cncMonitorLogs == null)
