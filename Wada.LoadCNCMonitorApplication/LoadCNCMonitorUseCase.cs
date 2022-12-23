@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Net;
 using Wada.AOP.Logging;
-using Wada.CNCMonitor;
 using Wada.CNCMonitor.CNCMonitorAggregation;
+using Wada.LoadCNCMonitorApplication;
 
 [module: Logging]
-namespace Wada.LoadCNCMonitorApplication
+namespace Wada.CNCMonitor.ApplicationConfigurationAggregation
 {
     public interface ILoadCNCMonitorUseCase
     {
@@ -18,24 +18,24 @@ namespace Wada.LoadCNCMonitorApplication
 
     public class LoadCNCMonitorUseCase : ILoadCNCMonitorUseCase
     {
-        private readonly IConfiguration configuration;
-        private readonly ICNCMonitorLoader cncMonitorLoader;
-        private readonly IStreamOpener streamOpner;
+        private readonly IConfiguration _configuration;
+        private readonly ICNCMonitorLoader _cncMonitorLoader;
+        private readonly IStreamOpener _streamOpner;
 
         public LoadCNCMonitorUseCase(IConfiguration configuration,
                                      IStreamOpener streamOpner,
                                      ICNCMonitorLoader cncMonitorLoader)
         {
-            this.configuration = configuration;
-            this.streamOpner = streamOpner;
-            this.cncMonitorLoader = cncMonitorLoader;
+            this._configuration = configuration;
+            this._streamOpner = streamOpner;
+            this._cncMonitorLoader = cncMonitorLoader;
         }
 
         [Logging]
         public async Task<IEnumerable<CNCMonitorByMachine>> ExecuteAsync(DateTime processDate)
         {
             // モニタログ取得設定を準備する
-            IEnumerable<CNCMonitorLog>? cncMonitorLogs = configuration.GetSection("cncMonitorLogs").Get<CNCMonitorLog[]>();
+            IEnumerable<CNCMonitorLog>? cncMonitorLogs = _configuration.GetSection("cncMonitorLogs").Get<CNCMonitorLog[]>();
             if (cncMonitorLogs == null)
             {
                 var m = "設定ファイルが読み込めません <cncMonitorLogs>";
@@ -49,7 +49,7 @@ namespace Wada.LoadCNCMonitorApplication
                     x.MachineName));
 
             // モニタログディレクトリ取得
-            var baseDirectory = configuration.GetValue<string>("monitorLogDirectory");
+            var baseDirectory = _configuration.GetValue<string>("monitorLogDirectory");
             if (baseDirectory == null)
             {
                 var m = "設定ファイルが読み込めません <monitorLogDirectory>";
@@ -60,10 +60,10 @@ namespace Wada.LoadCNCMonitorApplication
                 pickingMonitors.Select(async x =>
                 {
                     // ファイルを開く
-                    using StreamReader stream = streamOpner.Open(x.GetFilePath(baseDirectory));
+                    using StreamReader stream = _streamOpner.Open(x.GetFilePath(baseDirectory));
 
                     // データ展開
-                    return await cncMonitorLoader.LoadMachineLogsAsync(
+                    return await _cncMonitorLoader.LoadMachineLogsAsync(
                         new LoadMachineLogsRecord(stream, x.Factory, x.IPAddress)); ;
                 });
 

@@ -1,6 +1,6 @@
 ﻿using Wada.AOP.Logging;
-using Wada.CNCMonitor;
 using Wada.CNCMonitor.CNCMonitorAggregation;
+using Wada.CNCMonitor.DomainService;
 using Wada.CNCMonitor.UtilizationRateAggregation;
 
 [module: Logging]
@@ -8,7 +8,7 @@ namespace Wada.AnalyzeMachineToolUtilizationRateApplication
 {
     public interface IAnalyzeMachineToolUtilizationRateUseCase
     {
-        Task<CNCUtilizationRateReport> ExecuteAsync(CNCMonitorByMachine cncMonitorByMachine);
+        Task<CNCUtilizationRateReport> ExecuteAsync(IEnumerable<CNCMonitorByMachine> cncMonitorByMachines);
     }
     public class AnalyzeMachineToolUtilizationRateUseCase : IAnalyzeMachineToolUtilizationRateUseCase
     {
@@ -20,9 +20,9 @@ namespace Wada.AnalyzeMachineToolUtilizationRateApplication
         }
 
         [Logging]
-        public async Task<CNCUtilizationRateReport> ExecuteAsync(CNCMonitorByMachine cncMonitorByMachine)
+        public async Task<CNCUtilizationRateReport> ExecuteAsync(IEnumerable<CNCMonitorByMachine> cncMonitorByMachines)
         {
-            return await Task.Run(() => _machineToolUtilizationRateAnalyzer.Analyze(cncMonitorByMachine));
+            return await Task.Run(() => _machineToolUtilizationRateAnalyzer.Analyze(cncMonitorByMachines));
         }
     }
 }

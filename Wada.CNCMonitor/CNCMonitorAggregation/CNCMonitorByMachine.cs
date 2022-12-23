@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 
 namespace Wada.CNCMonitor.CNCMonitorAggregation
 {
     /// <summary>
     /// CNC稼働ログ
     /// </summary>
-    [Equals(DoNotAddEqualityOperators = true), ToString]
-    public class CNCMonitorByMachine
+    public record class CNCMonitorByMachine
     {
         private CNCMonitorByMachine(Ulid iD, DateTime pickedDate, string factory, IPAddress iPAddress, string machineName, IEnumerable<CNCMonitorRecord> cNCMonitorRecords)
         {
@@ -42,36 +40,31 @@ namespace Wada.CNCMonitor.CNCMonitorAggregation
         public static CNCMonitorByMachine ReConstruct(Ulid id, DateTime pickedDate, string factory, IPAddress iPAddress, string machineName, IEnumerable<CNCMonitorRecord> cNCMonitorRecords) =>
             new(id, pickedDate, factory, iPAddress, machineName, cNCMonitorRecords);
 
-        public Ulid ID { get; }
+        public Ulid ID { get; init; }
 
         /// <summary>
         /// 取得日
         /// </summary>
-        [IgnoreDuringEquals]
         public DateTime PickedDate { get; init; }
 
         /// <summary>
         /// 工場名
         /// </summary>
-        [IgnoreDuringEquals]
         public string Factory { get; init; }
 
         /// <summary>
         /// IPアドレス
         /// </summary>
-        [IgnoreDuringEquals]
         public IPAddress IPAddress { get; init; }
 
         /// <summary>
         /// 設備名
         /// </summary>
-        [IgnoreDuringEquals]
         public string MachineName { get; init; }
 
         /// <summary>
         /// ログレコードリスト
         /// </summary>
-        [IgnoreDuringEquals]
         public IEnumerable<CNCMonitorRecord> CNCMonitorRecords { get; init; }
     }
 
@@ -88,9 +81,9 @@ namespace Wada.CNCMonitor.CNCMonitorAggregation
             ProgramName = programName ?? throw new ArgumentNullException(nameof(programName));
             FeedRate = feedRate;
             SpindleRotation = spindleRotation;
-            RunMode = runMode;
-            RunState = runState;
-            Emergency = emergency;
+            RunMode = (RunMode)runMode;
+            RunState = (AutonomousWorkState)runState;
+            Emergency = (EmergencyState)emergency;
         }
 
         /// <summary>
@@ -126,19 +119,73 @@ namespace Wada.CNCMonitor.CNCMonitorAggregation
         /// モード
         /// </summary>
         [IgnoreDuringEquals]
-        public int RunMode { get; init; }
+        public RunMode RunMode { get; init; }
 
         /// <summary>
         /// 自動運転状態
         /// </summary>
         [IgnoreDuringEquals]
-        public int RunState { get; init; }
+        public AutonomousWorkState RunState { get; init; }
 
         /// <summary>
         /// 緊急停止
         /// </summary>
         [IgnoreDuringEquals]
-        public int Emergency { get; init; }
+        public EmergencyState Emergency { get; init; }
+    }
+
+    public enum RunMode
+    {
+        // MDI運転
+        MDIWork,
+        // メモリ運転
+        MemoryWork,
+        // ****(定義外)
+        Undefined,
+        // EDIT
+        Edit,
+        // 手動HANDLE送り
+        ManuallyHandleFeed,
+        // JOG送り
+        JogFeed,
+        // TEACH IN JOG
+        TeachJog,
+        // TEACH IN HANDLE
+        TeachHandle,
+        // 手動インクリメンタル送り
+        ManuallyIncrementalFeed,
+        // 手動リファレンス点復帰
+        ManuallyOriginMove,
+        // DNC, スケジュール運転
+        ScheduleWork,
+        // CNCLog欠落
+        MissingRecord = int.MaxValue,
+    }
+
+    public enum AutonomousWorkState
+    {
+        // リセット
+        Reset,
+        // 自動運転停止
+        Stop,
+        // 自動運転休止
+        Suspend,
+        // 自動運転起動
+        Start,
+        // CNCLog欠落
+        MissingRecord = int.MaxValue,
+    }
+
+    public enum EmergencyState
+    {
+        // 正常
+        Normal,
+        // 非常停止
+        Stop,
+        // リセット
+        Reset,
+        // CNCLog欠落
+        MissingRecord = int.MaxValue,
     }
 
     public class TestCNCMonitorByMachineFactory

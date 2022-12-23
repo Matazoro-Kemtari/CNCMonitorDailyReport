@@ -8,11 +8,11 @@ namespace Wada.CNCMonitoredCSV
 {
     public class CNCMonitoredCSV : ICNCMonitorLoader
     {
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
 
         public CNCMonitoredCSV(ILogger logger)
         {
-            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [Logging]
@@ -27,7 +27,7 @@ namespace Wada.CNCMonitoredCSV
             List<CNCMonitorRecord> records = new();
 
             // 末尾まで繰り返す
-            StreamReader reader = loadMachineLogsRecord.Reader;
+            using StreamReader reader = loadMachineLogsRecord.Reader;
             while (!reader.EndOfStream)
             {
                 string? line = await reader.ReadLineAsync();
@@ -61,7 +61,7 @@ namespace Wada.CNCMonitoredCSV
                 var msg = "CNC稼働設備ログが記録されていません";
                 throw new CNCMonitorLoaderException(msg);
             }
-            logger.Info($"CNC稼働設備ログ {loggedDate:g}, {machineName}, {records.Count} 件");
+            _logger.Info($"CNC稼働設備ログ {loggedDate:g}, {machineName}, {records.Count} 件");
 
             return new CNCMonitorByMachine(
                 loggedDate, loadMachineLogsRecord.Factory, ipAddress, machineName, records);

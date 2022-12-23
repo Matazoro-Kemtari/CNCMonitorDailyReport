@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="RzdB1_ECVK01WcsdOi-J" name="sodo">
-        <mxGraphModel dx="1145" dy="654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1374" dy="785" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="505" value="&lt;u&gt;稼働状況集約&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="200" y="870" width="210" height="230" as="geometry"/>
+                    <mxGeometry x="200" y="870" width="210" height="340" as="geometry"/>
                 </mxCell>
                 <mxCell id="363" value="&lt;u&gt;ログ読み込み集約&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="10" y="870" width="180" height="460" as="geometry"/>
@@ -94,9 +94,6 @@
                 <mxCell id="283" value="PDFを作成" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="840" y="260" width="130" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="511" style="edgeStyle=none;html=1;endArrow=none;endFill=0;dashed=1;" parent="1" source="354" target="510" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
                 <mxCell id="354" value="&lt;u&gt;CNC稼働レコード&lt;/u&gt;&lt;br&gt;(CNCMonitorRecord&lt;span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;日時&lt;/span&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;接続状態&lt;br&gt;&lt;/span&gt;プログラム名&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;送り速度&lt;/span&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;回転速度&lt;/span&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;モード&lt;/span&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;自動運転状態&lt;/span&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;緊急停止&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
                     <mxGeometry x="36.25" y="1158.5" width="127.5" height="153" as="geometry"/>
                 </mxCell>
@@ -124,8 +121,8 @@
                 <mxCell id="467" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="465" target="460" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="465" value="(CNC稼働ログ)&lt;br&gt;設備名:&amp;nbsp;RB-260M" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="550" y="881" width="100" height="40" as="geometry"/>
+                <mxCell id="465" value="(CNC稼働ログ)&lt;br&gt;取得日: 2022/5/1&lt;br&gt;工場名: A工場&lt;br&gt;設備名:&amp;nbsp;RB-260M" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="881" width="110" height="79" as="geometry"/>
                 </mxCell>
                 <mxCell id="328" value="(CNC稼働レコード)&lt;br&gt;日時: yyyy/mm/dd hh:mm:ss&lt;br&gt;接続状態: 未接続(電源OFF)&lt;br&gt;プログラム名:&lt;br&gt;送り速度:&lt;br&gt;回転速度:&lt;br&gt;モード:&lt;br&gt;自動運転状態:&lt;br&gt;緊急停止:" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="620" y="1031" width="180" height="140" as="geometry"/>
@@ -143,48 +140,31 @@
                 <mxCell id="514" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;startArrow=none;startFill=0;" parent="1" source="468" target="513" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="468" value="&lt;u&gt;CNC稼働ログ&lt;/u&gt;&lt;br&gt;(CNCMonitorByMachine&lt;span&gt;)&lt;/span&gt;&lt;br&gt;CNC稼働ログ情報&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="28.76" y="1060" width="141.25" height="50" as="geometry"/>
+                <mxCell id="468" value="&lt;u&gt;CNC稼働ログ&lt;/u&gt;&lt;br&gt;(CNCMonitorByMachine&lt;span&gt;)&lt;/span&gt;&lt;br&gt;取得日&lt;br&gt;&lt;span&gt;工場名&lt;br&gt;設備名&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="28.76" y="1040" width="141.25" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="484" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="496" target="482" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="950" y="1320.7692307692307" as="sourcePoint"/>
+                        <mxPoint x="660" y="1260.7692307692307" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="485" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="496" target="483" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="932.3529411764707" y="1339.9999999999998" as="sourcePoint"/>
-                    </mxGeometry>
+                <mxCell id="527" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="482" target="522" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="489" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="496" target="487" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="906.4516129032259" y="1339.9999999999998" as="sourcePoint"/>
-                    </mxGeometry>
+                <mxCell id="528" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="482" target="523" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="490" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="496" target="488" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="896.6666666666667" y="1339.9999999999998" as="sourcePoint"/>
-                    </mxGeometry>
+                <mxCell id="529" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="482" target="524" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="492" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="496" target="491" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="891.5254237288136" y="1339.9999999999998" as="sourcePoint"/>
-                    </mxGeometry>
+                <mxCell id="530" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="482" target="525" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="482" value="(稼働時間)&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;運転状態: 自動&lt;br&gt;稼働時間: 22min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="1015" y="1270" width="110" height="70" as="geometry"/>
+                <mxCell id="531" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="482" target="526" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="483" value="(稼働時間)&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;運転状態: 手動&lt;br&gt;稼働時間: 9min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="1015" y="1345" width="110" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="487" value="(稼働時間)&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;運転状態: EDIT&lt;br&gt;稼働時間: 5min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="1015" y="1420" width="110" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="488" value="(稼働時間)&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;運転状態: 原点停止&lt;br&gt;稼働時間: 120min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="1015" y="1495" width="110" height="70" as="geometry"/>
-                </mxCell>
-                <mxCell id="491" value="(稼働時間)&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;運転状態: 不明&lt;br&gt;稼働時間: 90min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="1015" y="1570" width="110" height="70" as="geometry"/>
+                <mxCell id="482" value="(稼働集計)&lt;br&gt;工場名: A工場&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;表示順位: 1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="725" y="1210" width="110" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="499" value="1" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="495" target="498" edge="1">
                     <mxGeometry x="-0.3333" relative="1" as="geometry">
@@ -196,34 +176,68 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="495" value="&lt;u&gt;稼働状況レポート(&lt;/u&gt;CNCUtilizationRateReport&lt;span&gt;)&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                <mxCell id="495" value="&lt;u&gt;稼働状況レポート(&lt;/u&gt;CNCUtilizationRateReport&lt;span&gt;)&lt;br&gt;集計日&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
                     <mxGeometry x="220" y="900" width="170" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="496" value="(稼働状況レポート)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="810" y="1270" width="150" height="50" as="geometry"/>
+                <mxCell id="496" value="(稼働状況レポート)&lt;br&gt;集計日: 2022/5/1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="1210" width="150" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="498" value="&lt;u&gt;稼働時間&lt;br&gt;(&lt;/u&gt;UtilizationTime)&lt;br&gt;&lt;span&gt;設備名&lt;br&gt;&lt;/span&gt;運転状態&lt;br&gt;稼働時間&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="246" y="995" width="124" height="85" as="geometry"/>
+                <mxCell id="518" style="edgeStyle=none;html=1;startArrow=diamond;startFill=1;endArrow=none;endFill=0;" parent="1" source="498" target="517" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="508" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;dashed=1;" parent="1" source="498" target="507" edge="1">
+                <mxCell id="520" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="518" vertex="1" connectable="0">
+                    <mxGeometry x="0.5088" y="1" relative="1" as="geometry">
+                        <mxPoint x="4" y="-14" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="521" value="1..1440(1日の分換算)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="518" vertex="1" connectable="0">
+                    <mxGeometry x="0.6335" y="1" relative="1" as="geometry">
+                        <mxPoint x="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="498" value="&lt;u&gt;稼働集計&lt;br&gt;(&lt;/u&gt;UtilizationAggregation)&lt;br&gt;&lt;span&gt;工場名&lt;br&gt;設備名&lt;br&gt;&lt;/span&gt;表示順位" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="235" y="998" width="144" height="82" as="geometry"/>
+                </mxCell>
+                <mxCell id="508" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;dashed=1;" parent="1" source="517" target="507" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="305.96153846153857" y="1164.9999999999998" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="507" value="&lt;span&gt;・運転状態は、「自動」「手動」「EDIT」「原点停止」「不明」&lt;br&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="220" y="1220" width="150" height="80" as="geometry"/>
+                <mxCell id="507" value="&lt;span&gt;・運転状態は、「自動」「手動」「EDIT」「原点停止」「不明」&lt;br&gt;&lt;br&gt;&lt;/span&gt;・グルーピング要件&lt;br&gt;&lt;span&gt;&#9;&lt;/span&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;・前のレコードの日時が1分より大きい&lt;br&gt;・前のレコードから接続状態が変わった&lt;br&gt;・前のレコードからプログラム名が変わった&lt;br&gt;・前のレコードからモードが変わった&lt;br&gt;・前のレコードから自動運転状態が変わった&lt;br&gt;・前のレコードから緊急停止が変わった&lt;br&gt;・10分以上送りと回転が停止した&lt;br&gt;・10分以上停止していた送りと回転が再開した&lt;/blockquote&gt;&lt;br&gt;&lt;blockquote style=&quot;border: none ; margin: 0px 0px 0px 40px ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;border: none ; margin: 0px 0px 0px 40px ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;border: none ; margin: 0px 0px 0px 40px ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;border: none ; margin: 0px 0px 0px 40px ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;border: none ; margin: 0px 0px 0px 40px ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;border: none ; margin: 0px 0px 0px 40px ; padding: 0px&quot;&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="207" y="1271" width="313" height="199" as="geometry"/>
                 </mxCell>
-                <mxCell id="510" value="&lt;span&gt;・グルーピング要件&lt;br&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・前のレコードの日時が1分より大きい&lt;br&gt;&lt;/span&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・前のレコードから接続状態が変わった&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・前のレコードからプログラム名が変わった&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・前のレコードからモードが変わった&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・前のレコードから自動運転状態が変わった&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・前のレコードから緊急停止が変わった&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・10分以上送りと回転が停止した&lt;br&gt;&lt;span&gt;&lt;span style=&quot;white-space: pre&quot;&gt;&#9;&lt;/span&gt;・10分以上停止していた送りと回転が再開した&lt;br&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="10" y="1470" width="360" height="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="512" value="(レポート設定)&lt;br&gt;工場名: 本社&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;表示名:&amp;nbsp;RB-260M&lt;br&gt;IPアドレス: 192.168.0.1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#FFFF00;strokeColor=#2D7600;fontColor=#050505;" parent="1" vertex="1">
-                    <mxGeometry x="570" y="1485" width="190" height="130" as="geometry"/>
+                <mxCell id="512" value="(レポート設定)&lt;br&gt;工場名: A工場&lt;br&gt;設備名:&amp;nbsp;RB-260M&lt;br&gt;表示名:&amp;nbsp;RB-260M&lt;br&gt;IPアドレス: 192.168.0.1&lt;br&gt;出力順位: 1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="1490" width="150" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="513" value="&lt;u&gt;CNC稼働ログ情報&lt;/u&gt;&lt;br&gt;(PickingCNCMonitor&lt;span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;日時&lt;br&gt;工場&lt;/span&gt;&lt;br style=&quot;color: rgb(255 , 255 , 255)&quot;&gt;&lt;font color=&quot;#ffffff&quot;&gt;IPアドレス&lt;br&gt;&lt;/font&gt;設備名" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
                     <mxGeometry x="35.629999999999995" y="900" width="127.5" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="515" value="グラフ作成" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="840" y="200" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="517" value="&lt;u&gt;稼働時間&lt;br&gt;(&lt;/u&gt;UtilizationTime)&lt;br&gt;運転状態&lt;br&gt;稼働時間&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="243" y="1130" width="124" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="522" value="(稼働時間)&lt;br&gt;運転状態: 自動&lt;br&gt;稼働時間: 22min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="1210" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="523" value="(稼働時間)&lt;br&gt;運転状態: 手動&lt;br&gt;稼働時間: 120min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="1280" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="524" value="(稼働時間)&lt;br&gt;運転状態: EDIT&lt;br&gt;稼働時間: 10min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="1350" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="525" value="(稼働時間)&lt;br&gt;運転状態: 原点停止&lt;br&gt;稼働時間: 30min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="1420" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="526" value="(稼働時間)&lt;br&gt;運転状態: 不明&lt;br&gt;稼働時間: 100min" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="1490" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="532" value="&lt;u&gt;アプリケーション設定集約&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="1340" width="170" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="533" value="&lt;u&gt;レポート設定&lt;/u&gt;&lt;br&gt;(CNCMonitorLog&lt;span&gt;)&lt;/span&gt;&lt;br&gt;&lt;font color=&quot;#ffffff&quot;&gt;工場名&lt;br&gt;&lt;/font&gt;IPアドレス&lt;br&gt;設備名&lt;br&gt;表示名&lt;br&gt;出力順位" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="36.25" y="1368.5" width="120" height="121.5" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

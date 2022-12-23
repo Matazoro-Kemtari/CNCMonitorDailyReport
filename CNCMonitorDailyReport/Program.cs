@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NLog;
+using Wada.AnalyzeMachineToolUtilizationRateApplication;
 using Wada.CNCMonitor;
+using Wada.CNCMonitor.ApplicationConfigurationAggregation;
+using Wada.CNCMonitor.DomainService;
 using Wada.CNCMonitoredCSV;
-using Wada.LoadCNCMonitorApplication;
 
 // 環境変数を読み込む
 DotNetEnv.Env.Load(".env");
@@ -12,12 +14,15 @@ DotNetEnv.Env.Load(".env");
 IServiceCollection services = new ServiceCollection();
 _ = services.AddSingleton<IConfiguration>(_ => MyConfigurationBuilder());
 _ = services.AddSingleton<ILogger, Logger>(_ => LogManager.GetCurrentClassLogger());
-// DI インフラ層
+
+// DI ログ情報読込
 _ = services.AddTransient<IStreamOpener, StreamOpener>();
 _ = services.AddTransient<ICNCMonitorLoader, CNCMonitoredCSV>();
-// DI UseCase層
 _ = services.AddTransient<ILoadCNCMonitorUseCase, LoadCNCMonitorUseCase>();
 
+// DI 稼働状況分析
+_ = services.AddTransient<IMachineToolUtilizationRateAnalyzer, MachineToolUtilizationRateAnalyzer>();
+_ = services.AddTransient<IAnalyzeMachineToolUtilizationRateUseCase, AnalyzeMachineToolUtilizationRateUseCase>();
 
 // インスタンス提供オブジェクトを作る
 using var provider = services.BuildServiceProvider();

@@ -4,6 +4,7 @@ using Moq;
 using System.Net;
 using System.Text;
 using Wada.CNCMonitor;
+using Wada.CNCMonitor.ApplicationConfigurationAggregation;
 using Wada.CNCMonitor.CNCMonitorAggregation;
 
 namespace Wada.LoadCNCMonitorApplication.Tests

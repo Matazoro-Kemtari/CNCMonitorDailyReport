@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Wada.CNCMonitor;
 using Wada.CNCMonitor.CNCMonitorAggregation;
+using Wada.CNCMonitor.DomainService;
 
 namespace Wada.AnalyzeMachineToolUtilizationRateApplication.Tests
 {
@@ -15,13 +15,16 @@ namespace Wada.AnalyzeMachineToolUtilizationRateApplication.Tests
             Mock<IMachineToolUtilizationRateAnalyzer> mock_analyzer = new();
 
             // when
-            CNCMonitorByMachine cncMonitorByMachine = TestCNCMonitorByMachineFactory.Create();
+            CNCMonitorByMachine[] cncMonitorByMachines = new CNCMonitorByMachine[]
+            {
+                TestCNCMonitorByMachineFactory.Create(),
+            };
             IAnalyzeMachineToolUtilizationRateUseCase analyzeMachineToolUtilizationRateUseCase =
                 new AnalyzeMachineToolUtilizationRateUseCase(mock_analyzer.Object);
-            _ = await analyzeMachineToolUtilizationRateUseCase.ExecuteAsync(cncMonitorByMachine);
+            _ = await analyzeMachineToolUtilizationRateUseCase.ExecuteAsync(cncMonitorByMachines);
 
             // then
-            mock_analyzer.Verify(x => x.Analyze(It.IsAny<CNCMonitorByMachine>()), Times.Once);
+            mock_analyzer.Verify(x => x.Analyze(It.IsAny<IEnumerable<CNCMonitorByMachine>>()), Times.Once);
         }
     }
 }

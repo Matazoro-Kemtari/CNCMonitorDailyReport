@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wada.AnalyzeMachineToolUtilizationRateApplication\Wada.AnalyzeMachineToolUtilizationRateApplication.csproj" />
     <ProjectReference Include="..\Wada.CNCMonitoredCSVTests\Wada.CNCMonitoredCSVTests.csproj" />
     <ProjectReference Include="..\Wada.LoadCNCMonitorApplication\Wada.LoadCNCMonitorApplication.csproj" />
   </ItemGroup>
